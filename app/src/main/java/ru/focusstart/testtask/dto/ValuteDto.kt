@@ -2,7 +2,7 @@ package ru.focusstart.testtask.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class ValuteDto(
+class ValuteDto(
     @SerializedName("AUD") var aud: CurrencyDto,
     @SerializedName("AZN") var azn: CurrencyDto,
     @SerializedName("GBR") var gbr: CurrencyDto,
@@ -37,4 +37,44 @@ data class ValuteDto(
     @SerializedName("ZAR") var zar: CurrencyDto,
     @SerializedName("KRW") var krw: CurrencyDto,
     @SerializedName("JPY") var jyp: CurrencyDto,
-)
+) {
+
+    fun toListCurrencyDto(): List<CurrencyDto>{
+        val currencyList = mutableListOf<CurrencyDto>()
+        currencyList.add(aud)
+        currencyList.add(azn)
+        currencyList.add(gbr)
+        currencyList.add(amd)
+        currencyList.add(byn)
+        currencyList.add(bgn)
+        currencyList.add(brl)
+        currencyList.add(huf)
+        currencyList.add(hkd)
+        currencyList.add(dkk)
+        currencyList.add(usd)
+        currencyList.add(eur)
+        currencyList.add(inr)
+        currencyList.add(kzt)
+        currencyList.add(cad)
+        currencyList.add(kgs)
+        currencyList.add(cny)
+        currencyList.add(mld)
+        currencyList.add(nok)
+        currencyList.add(pln)
+        currencyList.add(ron)
+        currencyList.add(xdr)
+        currencyList.add(sgd)
+        currencyList.add(tjs)
+        currencyList.add(try949)
+        currencyList.add(tmt)
+        currencyList.add(uzs)
+        currencyList.add(uah)
+        currencyList.add(czk)
+        currencyList.add(sek)
+        currencyList.add(chf)
+        currencyList.add(zar)
+        currencyList.add(krw)
+        currencyList.add(jyp)
+        return currencyList.toList()
+    }
+}
