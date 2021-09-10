@@ -44,15 +44,5 @@ class MainActivity : AppCompatActivity() {
 
 }
 
-/*
-val currencyList = binding.currencyRecycler
-        val linear = LinearLayoutManager(this)
-        currencyList.layoutManager = linear
-        currencyList.hasFixedSize()
-        currencyViewModel = ViewModelProvider(this).get(CurrencyViewModel::class.java)
-        currencyViewModel.fetchValute()
-        currencyViewModel.currency.observe(this, Observer {
-            val adapter = CurrencyAdapter(it)
 
-            currencyList.adapter = adapter
-        }) */
+}
