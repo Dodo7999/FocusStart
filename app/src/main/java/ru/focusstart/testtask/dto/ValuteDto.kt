@@ -2,10 +2,10 @@ package ru.focusstart.testtask.dto
 
 import com.google.gson.annotations.SerializedName
 
-class ValuteDto(
+data class ValuteDto(
     @SerializedName("AUD") var aud: CurrencyDto,
     @SerializedName("AZN") var azn: CurrencyDto,
-    @SerializedName("GBR") var gbr: CurrencyDto,
+    @SerializedName("GBP") var gbp: CurrencyDto,
     @SerializedName("AMD") var amd: CurrencyDto,
     @SerializedName("BYN") var byn: CurrencyDto,
     @SerializedName("BGN") var bgn: CurrencyDto,
@@ -43,7 +43,7 @@ class ValuteDto(
         val currencyList = mutableListOf<CurrencyDto>()
         currencyList.add(aud)
         currencyList.add(azn)
-        currencyList.add(gbr)
+        currencyList.add(gbp)
         currencyList.add(amd)
         currencyList.add(byn)
         currencyList.add(bgn)
