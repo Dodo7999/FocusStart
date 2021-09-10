@@ -2,41 +2,43 @@ package ru.focusstart.testtask
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.app.ProgressDialog
 import android.util.Log
-import android.widget.Toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.create
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.focusstart.testtask.databinding.ActivityMainBinding
-import ru.focusstart.testtask.dto.CurrencyList
+import ru.focusstart.testtask.dto.CurrencyDto
+import java.util.*
+import kotlin.concurrent.timerTask
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var currencyViewModel: CurrencyViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
 
-        val service = RetrofitClientInstance.retrofitInstance?.create(GetValuteService::class.java)
-        val call = service?.getValutes()
-        call?.enqueue(object : Callback<CurrencyList>{
-            override fun onResponse(call: Call<CurrencyList>, response: Response<CurrencyList>) {
-                val body = response.body()
-                val vatutes = body?.valute
-                Log.v("size", vatutes.toString())
-            }
-
-            override fun onFailure(call: Call<CurrencyList>, t: Throwable) {
-                Toast.makeText(applicationContext, "Error reading JSON", Toast.LENGTH_LONG).show()
-            }
-
+        binding.includeToolbar.refreshButton.setOnClickListener { currencyViewModel.fetchValute() }
+        val currencyList = binding.currencyRecycler
+        val linear = LinearLayoutManager(this)
+        currencyList.layoutManager = linear
+        currencyList.hasFixedSize()
+        currencyViewModel = ViewModelProvider(this).get(CurrencyViewModel::class.java)
+        if (currencyViewModel.currency.value == null)
+            currencyViewModel.fetchValute()
+        /*val t = Timer()
+        t.schedule(timerTask {
+            Log.v("1", "fetch")
+            currencyViewModel.fetchValute()
+        }, 0, 10000)*/
+        currencyViewModel.currency.observe(this, Observer {
+            val adapter = CurrencyAdapter(it)
+            currencyList.adapter = adapter
         })
-
     }
 
 

@@ -1,9 +1,11 @@
 package ru.focusstart.testtask
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import ru.focusstart.testtask.databinding.RecyclerCurrencyItemBinding
 import ru.focusstart.testtask.dto.CurrencyDto
@@ -21,6 +23,12 @@ class CurrencyAdapter (private val currencyList: List<CurrencyDto>) :
         fun bind(currencyDto: CurrencyDto){
             itemBinding.currencyName.text = currencyDto.name
             itemBinding.currencyTextAmount.text = currencyDto.name
+            itemBinding.amountOfRubles.setText(currencyDto.valueCurrency.toString())
+            itemBinding.currencyInputAmount.setText((currencyDto.valueCurrency / currencyDto.valueCurrency).toString())
+            itemBinding.amountOfRubles.doAfterTextChanged {
+                val rub = it.toString().toDouble() / currencyDto.valueCurrency
+                itemBinding.currencyInputAmount.setText(rub.toString())
+            }
         }
     }
 
