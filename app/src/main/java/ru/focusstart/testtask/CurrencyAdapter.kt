@@ -1,16 +1,13 @@
 package ru.focusstart.testtask
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
+import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.testtask.databinding.RecyclerCurrencyItemBinding
-import ru.focusstart.testtask.dto.CurrencyDto
 
-class CurrencyAdapter (private val currencyList: List<CurrencyDto>) :
+class CurrencyAdapter (private val currencyList: List<CurrencyEntities>) :
     RecyclerView.Adapter<CurrencyAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -20,13 +17,13 @@ class CurrencyAdapter (private val currencyList: List<CurrencyDto>) :
 
     class ViewHolder(private val itemBinding: RecyclerCurrencyItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
-        fun bind(currencyDto: CurrencyDto){
-            itemBinding.currencyName.text = currencyDto.name
-            itemBinding.currencyTextAmount.text = currencyDto.name
-            itemBinding.amountOfRubles.setText(currencyDto.valueCurrency.toString())
-            itemBinding.currencyInputAmount.setText((currencyDto.valueCurrency / currencyDto.valueCurrency).toString())
+        fun bind(currencyEntities: CurrencyEntities){
+            itemBinding.currencyName.text = currencyEntities.name
+            itemBinding.currencyTextAmount.text = currencyEntities.name
+            itemBinding.amountOfRubles.setText(currencyEntities.valueCurrency.toString())
+            itemBinding.currencyInputAmount.setText((currencyEntities.valueCurrency / currencyEntities.valueCurrency).toString())
             itemBinding.amountOfRubles.doAfterTextChanged {
-                val rub = it.toString().toDouble() / currencyDto.valueCurrency
+                val rub = it.toString().toDouble() / currencyEntities.valueCurrency
                 itemBinding.currencyInputAmount.setText(rub.toString())
             }
         }
