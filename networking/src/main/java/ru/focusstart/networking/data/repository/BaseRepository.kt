@@ -1,8 +1,7 @@
-package ru.focusstart.testtask
+package ru.focusstart.networking.data.repository
 
 import android.util.Log
 import retrofit2.Response
-import ru.focusstart.testtask.dto.CurrencyList
 import java.io.IOException
 
 open class BaseRepository {
@@ -24,7 +23,7 @@ open class BaseRepository {
         return data
     }
 
-    private suspend fun <T: Any> safeApiResult(call: suspend ()-> Response<T>, errorMessage: String) : Result<T>{
+    private suspend fun <T: Any> safeApiResult(call: suspend ()-> Response<T>, errorMessage: String) : Result<T> {
         val response = call.invoke()
         if(response.isSuccessful) return Result.Success(response.body()!!)
 

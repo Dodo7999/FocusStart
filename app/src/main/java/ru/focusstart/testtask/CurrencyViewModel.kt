@@ -4,8 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
-import ru.focusstart.testtask.dto.CurrencyDto
-import ru.focusstart.testtask.dto.ValuteDto
+import ru.focusstart.networking.domain.entities.CurrencyEntities
+import ru.focusstart.networking.domain.repositories.CurrencyRepository
+import ru.focusstart.networking.domain.usecases.getRepositoryUseCase
 import kotlin.coroutines.CoroutineContext
 
 class CurrencyViewModel: ViewModel() {
@@ -17,15 +18,15 @@ class CurrencyViewModel: ViewModel() {
 
     private val scope = CoroutineScope(coroutineContext)
 
-    private val repository: CurrencyRepository = CurrencyRepository(ApiFactory.getValuteService)
+    private val repository: CurrencyRepository = getRepositoryUseCase()
 
-    val currency = MutableLiveData<List<CurrencyDto>>()
+    val currency = MutableLiveData<List<CurrencyEntities>>()
 
     fun fetchValute(){
         Log.v("fetch","No")
         scope.launch {
             val valutes = repository.getCurrency()
-                currency.postValue(valutes?.toListCurrencyDto())
+                currency.postValue(valutes)
         }
     }
 

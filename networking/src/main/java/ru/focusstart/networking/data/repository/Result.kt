@@ -1,4 +1,4 @@
-package ru.focusstart.testtask
+package ru.focusstart.networking.data.repository
 
 sealed class Result<out T: Any> {
     data class Success<out T: Any>(val data: T): Result<T>()
