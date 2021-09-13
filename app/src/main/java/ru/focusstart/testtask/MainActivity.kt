@@ -14,35 +14,46 @@ import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var currencyViewModel: CurrencyViewModel
+    private lateinit var viewModel: CurrencyViewModel
     private lateinit var currencyList: RecyclerView
+    private val TIMER_VALUE = 100000L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bindContent()
+        viewModel = ViewModelProvider(this).get(CurrencyViewModel::class.java)
+        bindMainActivity()
+        currencyListFetch()
+        setRecyclerViewAdapter()
+        setTimer()
+    }
 
+    private fun bindMainActivity(){
+        binding.includeToolbar.refreshButton.setOnClickListener { viewModel.fetchValute() }
         currencyList = binding.currencyRecycler
         val linear = LinearLayoutManager(this)
         currencyList.layoutManager = linear
         currencyList.hasFixedSize()
-        currencyViewModel = ViewModelProvider(this).get(CurrencyViewModel::class.java)
-        if (currencyViewModel.currency.value == null)
-            currencyViewModel.fetchValute()
-        /*val t = Timer()
+    }
+
+    private fun currencyListFetch(){
+        if (viewModel.currency.value == null)
+            viewModel.fetchValute()
+    }
+
+    private fun setTimer(){
+        val t = Timer()
         t.schedule(timerTask {
-            Log.v("1", "fetch")
-            currencyViewModel.fetchValute()
-        }, 0, 1000000)*/
-        currencyViewModel.currency.observe(this, Observer {
+            viewModel.fetchValute()
+        }, TIMER_VALUE, TIMER_VALUE)
+    }
+
+    private fun setRecyclerViewAdapter(){
+        viewModel.currency.observe(this, Observer {
             val adapter = CurrencyAdapter(it)
             currencyList.adapter = adapter
         })
-    }
-
-    fun bindContent(){
-        binding.includeToolbar.refreshButton.setOnClickListener { currencyViewModel.fetchValute() }
     }
 }

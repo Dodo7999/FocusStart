@@ -23,7 +23,6 @@ class CurrencyViewModel: ViewModel() {
     val currency = MutableLiveData<List<CurrencyEntities>>()
 
     fun fetchValute(){
-        Log.v("fetch","No")
         scope.launch {
             val valutes = repository.getCurrency()
                 currency.postValue(valutes)
