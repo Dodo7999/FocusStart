@@ -1,5 +1,6 @@
 package ru.focusstart.testtask
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
@@ -18,6 +19,7 @@ class CurrencyAdapter (private val currencyList: List<CurrencyEntities>) :
     class ViewHolder(private val itemBinding: RecyclerCurrencyItemBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(currencyEntities: CurrencyEntities){
+            Log.v("1", "yes")
             itemBinding.currencyName.text = currencyEntities.name
             itemBinding.currencyTextAmount.text = currencyEntities.name
             itemBinding.amountOfRubles.setText(currencyEntities.valueCurrency.toString())
@@ -32,6 +34,7 @@ class CurrencyAdapter (private val currencyList: List<CurrencyEntities>) :
     override fun getItemCount(): Int = currencyList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        Log.v("2", "yes")
         val currencyDto = currencyList[position]
         holder.bind(currencyDto)
     }

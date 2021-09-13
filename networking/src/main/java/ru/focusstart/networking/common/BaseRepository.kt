@@ -1,7 +1,8 @@
-package ru.focusstart.networking.data.repository
+package ru.focusstart.networking.common
 
 import android.util.Log
 import retrofit2.Response
+import ru.focusstart.networking.data.repository.Result
 import java.io.IOException
 
 open class BaseRepository {

@@ -8,5 +8,5 @@ import ru.focusstart.networking.data.dto.CurrencyList
 interface CurrencyApi {
 
     @GET("/daily_json.js")
-    suspend fun getCurrencyAsync(): Deferred<Response<CurrencyList>>
+    fun getCurrencyAsync(): Deferred<Response<CurrencyList>>
 }

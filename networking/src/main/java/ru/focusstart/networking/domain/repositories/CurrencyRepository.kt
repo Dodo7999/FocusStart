@@ -1,7 +1,7 @@
 package ru.focusstart.networking.domain.repositories
 
 import ru.focusstart.networking.data.api.CurrencyApi
-import ru.focusstart.networking.data.repository.BaseRepository
+import ru.focusstart.networking.common.BaseRepository
 import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.networking.domain.mapper.toListCurrencyEntities
 
