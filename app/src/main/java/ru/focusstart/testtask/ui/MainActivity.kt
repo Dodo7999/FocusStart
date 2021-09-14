@@ -2,12 +2,15 @@ package ru.focusstart.testtask.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import ru.focusstart.testtask.databinding.ActivityMainBinding
 import ru.focusstart.testtask.presentation.CurrencyViewModel
+import ru.focusstart.testtask.presentation.state.MainState
 import ru.focusstart.testtask.ui.bind.bindData
 import java.util.*
 import kotlin.concurrent.timerTask
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(CurrencyViewModel::class.java)
-        bindData(this.lifecycleScope, viewModel)
+        bindData(viewModel)
         currencyListFetch()
         setRecyclerViewAdapter()
         setTimer()
@@ -45,9 +48,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun setRecyclerViewAdapter() {
         lifecycleScope.launchWhenCreated {
-            viewModel.currency.collect {
-                val adapter = CurrencyAdapter(it)
-                currencyList.adapter = adapter
+            viewModel.state.collect {
+                if (it is MainState.Success) {
+                    val adapter = CurrencyAdapter(viewModel.currency.value)
+                    currencyList.adapter = adapter
+                }
             }
         }
     }

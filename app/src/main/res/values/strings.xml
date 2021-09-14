@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Focus Start</string>
+    <string name="refresh_button">Попробовать снова</string>
+    <string name="error_loading_currency_list_text">Упс, нам не удалось загрузить список валюты</string>
+    <string name="loading_currency_list_text">Загрузка…</string>
+    <string name="update_currency_button_description">Кнопка обновления списка валют</string>
+    <string name="rubles_edit_text">Рубли(Введите количество)</string>
 </resources>

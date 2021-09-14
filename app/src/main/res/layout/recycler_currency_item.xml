@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_currency"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,13 +31,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Рубль"/>
+                android:text="@string/rubles_edit_text"/>
 
             <EditText
                 android:id="@+id/amount_of_rubles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:autofillHints=""
+                tools:ignore="LabelFor" />
 
             <TextView
                 android:id="@+id/currency_text_amount"
@@ -47,7 +50,10 @@
                 android:id="@+id/currency_input_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:autofillHints=""
+                tools:ignore="LabelFor"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

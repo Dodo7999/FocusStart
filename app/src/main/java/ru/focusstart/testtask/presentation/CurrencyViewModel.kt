@@ -34,6 +34,7 @@ class CurrencyViewModel : ViewModel() {
     }
 
     fun fetchValute() {
+        Log.v("fetch", "BLY")
         scope.launch(handler) {
             _uiState.value = MainState.Loading
             val valutes = repository.getCurrency()
