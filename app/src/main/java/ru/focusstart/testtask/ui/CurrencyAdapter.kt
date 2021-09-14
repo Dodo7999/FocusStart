@@ -1,8 +1,7 @@
-package ru.focusstart.testtask
+package ru.focusstart.testtask.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.widget.doAfterTextChanged
 import androidx.recyclerview.widget.RecyclerView
 import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.testtask.databinding.RecyclerCurrencyItemBinding
