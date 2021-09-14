@@ -1,7 +1,5 @@
 package ru.focusstart.testtask.presentation
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -33,12 +31,12 @@ class CurrencyViewModel : ViewModel() {
         _uiState.value = MainState.Error
     }
 
-    fun fetchValute() {
-        Log.v("fetch", "BLY")
+    fun fetchCurrency() {
         scope.launch(handler) {
             _uiState.value = MainState.Loading
-            val valutes = repository.getCurrency()
-            currency.value = valutes ?: throw IllegalArgumentException("Currency is not be null")
+            val newCurrency = repository.getCurrency()
+            currency.value =
+                newCurrency ?: throw IllegalArgumentException("Currency is not be null")
             _uiState.value = MainState.Success
         }
     }

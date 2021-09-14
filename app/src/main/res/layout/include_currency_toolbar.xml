@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.appbar.MaterialToolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.appbar.MaterialToolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
+    style="@style/Widget.Design.CollapsingToolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#ECEBBD"
+    android:contentInsetStart="0dp"
+    android:contentInsetLeft="0dp"
+    android:elevation="0dp"
     android:paddingBottom="0dp"
     app:contentInsetLeft="0dp"
-    app:contentInsetStart="0dp"
-    android:contentInsetLeft = "0dp"
-    android:contentInsetStart = "0dp"
-    android:elevation = "0dp"
-    style="@style/Widget.Design.CollapsingToolbar">
+    app:contentInsetStart="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,15 +25,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/app_name"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
 
         <ImageView
             android:id="@+id/update_currency_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
-            android:focusable="true"
             android:contentDescription="@string/update_currency_button_description"
-            android:src="@drawable/refresh_button"/>
+            android:focusable="true"
+            android:src="@drawable/refresh_button" />
     </LinearLayout>
 </com.google.android.material.appbar.MaterialToolbar>

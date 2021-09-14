@@ -1,7 +1,6 @@
 package ru.focusstart.testtask.ui.bind
 
 import androidx.core.widget.doAfterTextChanged
-import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.testtask.presentation.CurrencyViewModel
@@ -14,35 +13,35 @@ fun MainActivity.bindData(viewModel: CurrencyViewModel) {
     bindUiState(viewModel.state)
 }
 
-private fun MainActivity.bindButton(viewModel: CurrencyViewModel){
+private fun MainActivity.bindButton(viewModel: CurrencyViewModel) {
     binding.includeToolbar.updateCurrencyButton.setOnClickListener {
-        viewModel.fetchValute()
+        viewModel.fetchCurrency()
     }
     binding.refreshButton.setOnClickListener {
-        viewModel.fetchValute()
+        viewModel.fetchCurrency()
     }
 }
 
-private fun MainActivity.bindRecyclerView(){
+private fun MainActivity.bindRecyclerView() {
     currencyList = binding.currencyRecycler
     val linear = LinearLayoutManager(this)
     currencyList.layoutManager = linear
     currencyList.hasFixedSize()
 }
 
-fun CurrencyAdapter.ViewHolder.bindData(currencyEntities: CurrencyEntities){
+fun CurrencyAdapter.ViewHolder.bindData(currencyEntities: CurrencyEntities) {
     bindText(currencyEntities)
     bindEditText(currencyEntities)
 }
 
-private fun CurrencyAdapter.ViewHolder.bindText(currencyEntities: CurrencyEntities){
+private fun CurrencyAdapter.ViewHolder.bindText(currencyEntities: CurrencyEntities) {
     with(itemBinding) {
         currencyName.text = currencyEntities.name
         currencyTextAmount.text = currencyEntities.name
     }
 }
 
-private fun CurrencyAdapter.ViewHolder.bindEditText(currencyEntities: CurrencyEntities){
+private fun CurrencyAdapter.ViewHolder.bindEditText(currencyEntities: CurrencyEntities) {
     with(itemBinding) {
         amountOfRubles.setText(currencyEntities.valueCurrency.toString())
         currencyInputAmount.setText(currencyEntities.nominal.toString())

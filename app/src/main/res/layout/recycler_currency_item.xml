@@ -21,7 +21,7 @@
             android:id="@+id/currency_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,14 +31,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rubles_edit_text"/>
+                android:text="@string/rubles_edit_text" />
 
             <EditText
                 android:id="@+id/amount_of_rubles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:autofillHints=""
+                android:inputType="number"
                 tools:ignore="LabelFor" />
 
             <TextView
@@ -50,10 +50,10 @@
                 android:id="@+id/currency_input_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="number"
                 android:autofillHints=""
-                tools:ignore="LabelFor"
-                android:enabled="false"/>
+                android:enabled="false"
+                android:inputType="number"
+                tools:ignore="LabelFor" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

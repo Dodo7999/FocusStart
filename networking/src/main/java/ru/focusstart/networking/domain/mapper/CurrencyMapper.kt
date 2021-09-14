@@ -15,7 +15,7 @@ fun CurrencyDto.toEntities(): CurrencyEntities =
         previous = previous
     )
 
-fun ValuteDto.toListCurrencyEntities(): List<CurrencyEntities>{
+fun ValuteDto.toListCurrencyEntities(): List<CurrencyEntities> {
     val currencyList = mutableListOf<CurrencyDto>()
     currencyList.add(aud)
     currencyList.add(azn)

@@ -3,7 +3,7 @@ package ru.focusstart.networking.data.dto
 import com.google.gson.annotations.SerializedName
 
 data class CurrencyList(
-    @SerializedName("Valute") var valute : ValuteDto
+    @SerializedName("Valute") var valute: ValuteDto
 )
 
 data class ValuteDto(

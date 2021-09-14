@@ -1,4 +1,4 @@
-package ru.focusstart.networking.data.repository
+package ru.focusstart.networking.common
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.Retrofit
@@ -11,10 +11,10 @@ object ApiFactory {
 
 
     private fun retrofit(): Retrofit = Retrofit.Builder()
-                    .baseUrl(BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(CoroutineCallAdapterFactory())
-                    .build()
+        .baseUrl(BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
 
     val getCurrencyApi: CurrencyApi = retrofit().create(CurrencyApi::class.java)
 }
