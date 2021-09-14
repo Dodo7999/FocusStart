@@ -34,13 +34,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun currencyListFetch() {
         if (viewModel.currency.value.isEmpty())
-            viewModel.fetchCurrency()
+            viewModel.fetchCurrency(lifecycleScope)
     }
 
     private fun setTimer() {
         val t = Timer()
         t.schedule(timerTask {
-            viewModel.fetchCurrency()
+            viewModel.fetchCurrency(lifecycleScope)
         }, TIMER_VALUE, TIMER_VALUE)
     }
 

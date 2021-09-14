@@ -1,6 +1,8 @@
 package ru.focusstart.testtask.ui.bind
 
+import android.util.Log
 import androidx.core.widget.doAfterTextChanged
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.testtask.presentation.CurrencyViewModel
@@ -15,10 +17,10 @@ fun MainActivity.bindData(viewModel: CurrencyViewModel) {
 
 private fun MainActivity.bindButton(viewModel: CurrencyViewModel) {
     binding.includeToolbar.updateCurrencyButton.setOnClickListener {
-        viewModel.fetchCurrency()
+        viewModel.fetchCurrency(lifecycleScope)
     }
     binding.refreshButton.setOnClickListener {
-        viewModel.fetchCurrency()
+        viewModel.fetchCurrency(lifecycleScope)
     }
 }
 

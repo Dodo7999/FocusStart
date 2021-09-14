@@ -8,16 +8,8 @@ import ru.focusstart.networking.domain.entities.CurrencyEntities
 import ru.focusstart.networking.domain.repositories.CurrencyRepository
 import ru.focusstart.networking.domain.usecases.getRepositoryUseCase
 import ru.focusstart.testtask.presentation.state.MainState
-import kotlin.coroutines.CoroutineContext
 
 class CurrencyViewModel : ViewModel() {
-
-    private val parentJob = Job()
-
-    private val coroutineContext: CoroutineContext
-        get() = parentJob + Dispatchers.Default
-
-    private val scope = CoroutineScope(coroutineContext)
 
     private val repository: CurrencyRepository = getRepositoryUseCase()
 
@@ -31,7 +23,7 @@ class CurrencyViewModel : ViewModel() {
         _uiState.value = MainState.Error
     }
 
-    fun fetchCurrency() {
+    fun fetchCurrency(scope: CoroutineScope) {
         scope.launch(handler) {
             _uiState.value = MainState.Loading
             val newCurrency = repository.getCurrency()
