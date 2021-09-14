@@ -40,7 +40,4 @@ class CurrencyViewModel : ViewModel() {
             _uiState.value = MainState.Success
         }
     }
-
-    fun cancelAllRequests() = coroutineContext.cancel()
-
 }
