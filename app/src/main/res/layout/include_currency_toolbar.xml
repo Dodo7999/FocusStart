@@ -34,6 +34,6 @@
             android:clickable="true"
             android:contentDescription="@string/update_currency_button_description"
             android:focusable="true"
-            android:src="@drawable/refresh_button" />
+            android:src="@drawable/ic_refresh_button" />
     </LinearLayout>
 </com.google.android.material.appbar.MaterialToolbar>
