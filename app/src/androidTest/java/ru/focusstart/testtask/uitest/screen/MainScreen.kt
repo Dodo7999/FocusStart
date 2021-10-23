@@ -5,11 +5,14 @@ import com.agoda.kakao.edit.KEditText
 import com.agoda.kakao.recycler.KRecyclerItem
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.recycler.KRecyclerView
+import com.agoda.kakao.text.KButton
 import com.agoda.kakao.text.KTextView
 import org.hamcrest.Matcher
 import ru.focusstart.testtask.R
 
 object MainScreen : Screen<MainScreen>() {
+
+    val button = KButton { withId(R.id.refresh_button) }
 
     val currencyList = KRecyclerView(
         builder = { withId(R.id.currency_recycler) },
