@@ -1,5 +1,6 @@
 package ru.focusstart.testtask.uitest
 
+import android.util.Log
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
@@ -21,33 +22,47 @@ class CurrencyTest : KTestCase() {
         run {
             step("Check currency content") {
                 checkCurrency(
-                    CurrencyItem(name = "Австралийский доллар", amountOfRubles = "53.196"),
-                    CurrencyItem(name = "Фзербайджанский манат", amountOfRubles = "41.7082"),
+                    CurrencyItem(name = "Австралийский доллар", amountOfRubles = "53.1396"),
+                    CurrencyItem(name = "Азербайджанский манат", amountOfRubles = "41.7082"),
                     CurrencyItem(name = "Фунт стерлингов Соединенного королевства", amountOfRubles = "97.6482"),
                     CurrencyItem(name = "Армянских драмов", amountOfRubles = "14.8372"),
-                    CurrencyItem(name = "Белорусский рубль", amountOfRubles = "29.1903")
                 )
+            }
+            step( "Check currency transform"){
+                MainScreen{
+                    currencyList{
+                        childAt<MainScreen.CurrencyItem>(0){
+                            amountOfRubles{
+                                clearText()
+                                typeText("1000")
+                            }
+                            currencyInputAmount{
+                                hasText("18.818357684288177")
+                            }
+                        }
+                    }
+                }
             }
         }
     }
 
     class CurrencyItem(
         val name: String,
-        val amountOfRubles: String,
-        val currencyInputAmount: String = ""
+        val amountOfRubles: String
     )
 
     private fun checkCurrency(vararg currencies: CurrencyItem){
         currencies.forEachIndexed { index, currencyItem ->
+            Log.i("Test", "$index")
             MainScreen {
                 currencyList {
                     childAt<MainScreen.CurrencyItem>(index) {
                         name {
-                            isDisabled()
+                            isDisplayed()
                             hasText(currencyItem.name)
                         }
                         amountOfRubles{
-                            isDisabled()
+                            isDisplayed()
                             hasText(currencyItem.amountOfRubles)
                         }
                     }
